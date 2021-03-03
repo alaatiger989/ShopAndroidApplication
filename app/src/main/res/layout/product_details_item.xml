@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    card_view:cardCornerRadius="6dp"
+    card_view:cardBackgroundColor="@android:color/transparent"
+    android:layout_margin="10dp"
+    android:id="@+id/card_product_detail"
+    android:layoutDirection="rtl"
+    android:layout_marginBottom="5dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text = "برسيل"
+            android:textSize="27sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:id="@+id/productName"
+            android:layout_marginBottom="8dp"
+            android:layout_gravity="center"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text = "الكمية : "
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:id="@+id/productAmount"
+            android:layout_marginBottom="8dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text = "اسم المورد"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:id="@+id/mowaredName"
+            android:layout_marginBottom="8dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text = "سعر الجملة"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:id="@+id/gomlaPrice"
+            android:layout_marginBottom="8dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text = "سعر البيع"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:id="@+id/sellPrice"
+            android:layout_marginBottom="8dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text = "الربح المثالي"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:id="@+id/incomeIdle"
+            android:layout_marginBottom="8dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text = "الربح المثالي"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:id="@+id/date"
+            android:layout_marginBottom="8dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text = "الربح المثالي"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:id="@+id/day"
+            android:layout_marginBottom="8dp"
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="تعديل"
+            android:background="@color/black"
+            android:textColor="@color/white"
+            android:id="@+id/updateProductDetailsBtn"
+    />
+    </LinearLayout>
+
+
+</androidx.cardview.widget.CardView>
