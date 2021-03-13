@@ -109,9 +109,18 @@ public class StoreActivity extends AppCompatActivity implements View.OnClickList
                 //Same productName and Gomla Price
                 //Update The Amount of The product  and its another data
 
-                SameGomlaPriceAlert sameGomlaPriceAlert = new SameGomlaPriceAlert(productName , amount , gomlaPrice , sellPrice , nameOfMowared , isTheSameNameOfMowared);
-                sameGomlaPriceAlert.show(getSupportFragmentManager() , "Inquiry With Same Gomla Price");
-                Toast.makeText(getApplicationContext() , "تم تحديث بيانات المنتج بنجاح" , Toast.LENGTH_LONG).show();
+                if (isTheSameNameOfMowared != 0)
+                {
+                    SameGomlaPriceAlert sameGomlaPriceAlert = new SameGomlaPriceAlert(productName , amount , gomlaPrice , sellPrice , nameOfMowared , isTheSameNameOfMowared);
+                    sameGomlaPriceAlert.show(getSupportFragmentManager() , "Inquiry With Same Gomla Price");
+                    Toast.makeText(getApplicationContext() , "تم تحديث بيانات المنتج بنجاح" , Toast.LENGTH_LONG).show();
+                }
+                else{
+                    DifferentGomlaPriceAlert differentGomlaPriceAlert = new DifferentGomlaPriceAlert(productName , amount , gomlaPrice , sellPrice , nameOfMowared  , isTheSameNameOfMowared);
+                    differentGomlaPriceAlert.show(getSupportFragmentManager() , "Inquiry With different Gomla Price");
+                    Toast.makeText(getApplicationContext() , "تم تحديث بيانات المنتج بنجاح" , Toast.LENGTH_LONG).show();
+                }
+
             }
 
         }

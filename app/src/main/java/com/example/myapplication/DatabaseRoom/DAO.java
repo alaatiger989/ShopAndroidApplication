@@ -41,10 +41,15 @@ public interface DAO{
         @Query("Update store_table set rest = :rest   where name_of_product = :productName")
         void updateProductRest(String rest , String productName);
 
+        @Query("SELECT * FROM store_table Where name_of_product = :productName AND gomla_price = :gomlaPrice AND name_of_mowared = :nameOfMowared")
+        List<StoreTable> getSpecificCategory(String productName , String gomlaPrice , String nameOfMowared);
 
 
         @Query("SELECT DISTINCT(name_of_product) from store_table")
         List<String> getUniqueNamesForProducts();
+
+        @Query("SELECT DISTINCT(sell_price) from store_table where name_of_product = :productName")
+        List<String> getUniqueSellPricesForProduct(String productName);
 
         @Query("SELECT rest from store_table where name_of_product = :productName LIMIT 1")
         List<String> getRestAmountForProduct(String productName);

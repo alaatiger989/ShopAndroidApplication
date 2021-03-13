@@ -9,12 +9,28 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
-        <activity android:name=".Store.ProductDetails.ProductDetailsActivity" android:noHistory="true"></activity>
-        <activity android:name=".Store.ShowStorePackage.ShowStoreActivity"  android:noHistory="true"/>
-        <activity android:name=".Store.UpdateSingleDetailForProduct.UpdateSingleDetailProductActivity"  android:noHistory="true"/>
-        <activity android:name=".TestActivity"  android:noHistory="true"/>
-        <activity android:name=".Store.AddNewProductPackage.StoreActivity"  android:noHistory="true"/>
-        <activity android:name=".MainActivity"  android:noHistory="true">
+        <activity android:name=".GoodsToShopPackage.GoodsToShopActivity"></activity>
+        <activity android:name=".RequirementPackage.RequirementsActivity" />
+        <activity android:name=".ShopPackage.ShopActivity" />
+        <activity android:name=".MainActivity" />
+        <activity
+            android:name=".Store.ProductDetails.ProductDetailsActivity"
+            android:noHistory="true" />
+        <activity
+            android:name=".Store.ShowStorePackage.ShowStoreActivity"
+            android:noHistory="true" />
+        <activity
+            android:name=".Store.UpdateSingleDetailForProduct.UpdateSingleDetailProductActivity"
+            android:noHistory="true" />
+        <activity
+            android:name=".TestActivity"
+            android:noHistory="true" />
+        <activity
+            android:name=".Store.AddNewProductPackage.StoreActivity"
+            android:noHistory="true" />
+        <activity
+            android:name=".SplashScreenActivity"
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

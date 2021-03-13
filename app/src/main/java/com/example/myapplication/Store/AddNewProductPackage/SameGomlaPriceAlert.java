@@ -3,7 +3,10 @@ package com.example.myapplication.Store.AddNewProductPackage;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,7 +28,8 @@ public class SameGomlaPriceAlert extends AppCompatDialogFragment {
             nameOfMowared;
     int nameOfMowaredIsSame ;
     List<StoreTable> totalAmountRest ;
-    Double amountRestForEachProduct;
+
+    Double amountRestForEachProduct , currentAmountOfEnteredMowared =0.0;
     public SameGomlaPriceAlert(EditText productName, EditText amount, EditText gomlaPrice, EditText sellPrice  ,EditText nameOfMowared , int nameOfMowaredIsSame) {
         this.productName = productName;
         this.amount = amount;
@@ -46,15 +50,12 @@ public class SameGomlaPriceAlert extends AppCompatDialogFragment {
                         if(nameOfMowaredIsSame != 0)// 0 means no --- NOT 0 means yes
                         {
                             getTotalAmountOfProduct();
+                            getSpecificCategoryInProduct();
                             updateExistedProductWithSameGomlaPrice();
                             updateProductRest();
+
                         }
-                        else{
-                            getTotalAmountOfProduct();
-                            updateSellPriceForAllProduct();
-                            insertNewProduct();
-                            updateProductRest();
-                        }
+
 
                     }
         });
@@ -77,6 +78,7 @@ public class SameGomlaPriceAlert extends AppCompatDialogFragment {
     private void updateProductRest() {
         AppDatabase db = AppDatabase.getInstance(getActivity());
         db.storeDao().updateProductRest(String.valueOf(amountRestForEachProduct + Double.parseDouble(amount.getText().toString())) , productName.getText().toString());
+
     }
     private void getTotalAmountOfProduct() {
         AppDatabase db = AppDatabase.getInstance(getActivity());
@@ -84,6 +86,23 @@ public class SameGomlaPriceAlert extends AppCompatDialogFragment {
         List<String> totalAmountRest = new ArrayList<>();
         totalAmountRest.addAll(db.storeDao().getRestAmountForProduct(productName.getText().toString()));
         amountRestForEachProduct = Double.parseDouble(totalAmountRest.get(0).toString());
+    }
+
+    private void getSpecificCategoryInProduct()
+    {
+        List<StoreTable> specificCategory = new ArrayList<>();
+        AppDatabase db = AppDatabase.getInstance(getActivity());
+        specificCategory.addAll(db.storeDao().getSpecificCategory(productName.getText().toString(), gomlaPrice.getText().toString() , nameOfMowared.getText().toString()));
+        Log.i("SameGomlaPriceAlert" , "" + specificCategory.size());
+        if (specificCategory.size() > 0)
+        {
+            Toast.makeText(getActivity() , "هذا المورد موجود مسبقا لهذا المنتج بنفس سعر الجملة" , Toast.LENGTH_LONG).show();
+            for(int i = 0 ; i<specificCategory.size() ; i++)
+            {
+                currentAmountOfEnteredMowared+=Double.parseDouble(specificCategory.get(i).getPRODUCT_AMOUNT());
+            }
+        }
+
     }
     private void updateSellPriceForAllProduct() {
 
@@ -95,7 +114,7 @@ public class SameGomlaPriceAlert extends AppCompatDialogFragment {
     private void updateExistedProductWithSameGomlaPrice() {
         String formattedDate = new DateAndDay().getDate();
         String dayOfTheWeek = new DateAndDay().getDay();
-        String newAmount = String.valueOf(amountRestForEachProduct + Double.parseDouble(amount.getText().toString()));
+        String newAmount = String.valueOf(currentAmountOfEnteredMowared + Double.parseDouble(amount.getText().toString()));
         AppDatabase db = AppDatabase.getInstance(getActivity());
         db.storeDao().update(productName.getText().toString() ,
                 newAmount,
